@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Parcel Sandbox</title>
+    <meta charset="UTF-8" />
+</head>
+
+<body>
+    <audio id="myAudio"></audio>
+    <button onclick="getRandVal();">click</button>
+    <div id="id"></div>
+    <div id="app"></div>
+
+    <script>
+        var x = document.querySelector("#myAudio");
+        var alreadyDone = [];
+
+        const randomValueFromArray = () => {
+
+            var myArray = [];
+
+            for (var a = 1; a < 38; a++) {
+                myArray.push(a);
+            }
+
+            if (alreadyDone.length === 0) {
+                for (var i = 0; i < myArray.length; i++)
+                    alreadyDone.push(i);
+            }
+
+            var b = Math.floor(Math.random() * alreadyDone.length);
+
+            var c = alreadyDone[b];
+
+            alreadyDone.splice(b, 1);
+
+            return myArray[c];
+        };
+
+        const getRandVal = () => {
+            document.getElementById("randomValue").innerHTML = randomValueFromArray();
+
+            var url = document.getElementById("randomValue").innerHTML;
+
+            x.src = url + ".mp3";
+            x.play();
+
+        };
+        // setInterval(getRandVal, 10000);
+
+        document.getElementById("app").innerHTML = `<div><b>Array Index Left: </b><span id="indexLeft"></span></div><h1>Random Array Value - <span id="randomValue"></span></h1>`;
+    </script>
+</body>
+
+</html>
