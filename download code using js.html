@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Save form Data in a Text File using JavaScript</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        div {
+            padding: 10px;
+            background-color: #f6f6f6;
+            overflow: hidden;
+        }
+        
+        input[type=text],
+        textarea,
+        select {
+            font: 17px Calibri;
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        
+        input[type=button] {
+            font: 17px Calibri;
+            width: auto;
+            float: right;
+            cursor: pointer;
+            padding: 7px;
+        }
+    </style>
+</head>
+
+<body>
+    <textarea autocomplete="off" id="textareaCode" wrap="logical" spellcheck="false"><!DOCTYPE html>
+        <html>
+        <head>
+        <title>Page Title</title>
+        </head>
+        <body>
+        
+        <h1>My First Heading</h1>
+        <p>My first paragraph.</p>
+        
+        </body>
+        </html>
+        </textarea>
+    <input type="button" value="Save data to file" onclick="saveFile()" />
+</body>
+<script>
+    let saveFile = () => {
+
+        const data = document.getElementById('textareaCode').value;
+
+        const textToBLOB = new Blob([data]);
+        const sFileName = 'myfile.html'; // The file to save the data.
+
+        let newLink = document.createElement("a");
+        newLink.download = sFileName;
+
+        if (window.webkitURL != null) {
+            newLink.href = window.webkitURL.createObjectURL(textToBLOB);
+        } else {
+            newLink.href = window.URL.createObjectURL(textToBLOB);
+            newLink.style.display = "none";
+            document.body.appendChild(newLink);
+        }
+        newLink.click();
+    }
+</script>
+
+
+</html>
