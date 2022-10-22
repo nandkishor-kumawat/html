@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        p {
+            margin-left: 100px;
+            width: max-content;
+        }
+
+        button {
+            margin: 10px;
+        }
+
+        :root {
+            --tooltipz-bg-color: #1f1f1f;
+            --tooltipz-text-color: #fff;
+            --tooltipz-font-size: 0.75rem;
+            --tooltipz-slide: 6px;
+            --tooltipz-border-radius: 0.125rem;
+            --tooltipz-timing: 120ms;
+            --tooltipz-cursor: pointer;
+            --tooltipz-small: 6.25rem;
+            --tooltipz-medium: 12.5rem;
+            --tooltipz-large: 18.75rem;
+            --tooltipz-arrow-size: 0.3125rem;
+            --tooltipz-delay-show: 0s;
+            --tooltipz-delay-hide: 0s;
+        }
+
+        .tooltipz-bottom-right::after {
+            margin-top: calc(var(--tooltipz-arrow-size, 0.3125rem) * 2);
+            right: 0;
+        }
+
+        .tooltipz-bottom-right::before {
+            right: calc(var(--tooltipz-arrow-size, 0.3125rem) / 2);
+        }
+
+        .tooltipz-bottom-right::after,
+        .tooltipz-bottom-right::before {
+            top: calc(100% - (var(--tooltipz-arrow-size, 0.3125rem) / 2));
+            -webkit-transform: translate(0, calc(var(--tooltipz-slide, 6px) * -1));
+            transform: translate(0, calc(var(--tooltipz-slide, 6px) * -1));
+            -webkit-transform-origin: bottom;
+            transform-origin: bottom;
+        }
+
+        .tooltipz-bottom-right:hover::after,
+        .tooltipz-bottom-right:hover::before {
+            -webkit-transform: translate(0);
+            transform: translate(0);
+        }
+
+        .tooltipz-left::before,
+        .tooltipz-right::before,
+        .tooltipz-bottom-right::before,
+        .tooltipz-bottom-left::before,
+        .tooltipz-bottom::before,
+        .tooltipz-top-right::before,
+        .tooltipz-top-left::before,
+        .tooltipz-top::before {
+            border: var(--tooltipz-arrow-size, 0.3125rem) solid transparent;
+            height: 0;
+            width: 0;
+        }
+
+        .tooltipz-bottom-right::before,
+        .tooltipz-bottom-left::before,
+        .tooltipz-bottom::before {
+            border-bottom-color: var(--tooltipz-bg-color, #1f1f1f);
+            -webkit-filter: drop-shadow(0 -1px 1px rgba(0, 0, 0, 0.3));
+            filter: drop-shadow(0 -1px 1px rgba(0, 0, 0, 0.3));
+        }
+
+        .tooltipz-bottom-left::after {
+            left: 0;
+            margin-top: calc(var(--tooltipz-arrow-size, 0.3125rem) * 2);
+        }
+
+        .tooltipz-bottom-left::before {
+            left: calc(var(--tooltipz-arrow-size, 0.3125rem) / 2);
+        }
+
+        .tooltipz-bottom-left::after,
+        .tooltipz-bottom-left::before {
+            top: calc(100% - (var(--tooltipz-arrow-size, 0.3125rem) / 2));
+            -webkit-transform: translate(0, calc(var(--tooltipz-slide, 6px) * -1));
+            transform: translate(0, calc(var(--tooltipz-slide, 6px) * -1));
+            -webkit-transform-origin: bottom;
+            transform-origin: bottom;
+        }
+
+        .tooltipz-bottom-left:hover::after,
+        .tooltipz-bottom-left:hover::before {
+            -webkit-transform: translate(0);
+            transform: translate(0);
+        }
+
+        .tooltipz-top-right::after {
+            margin-bottom: calc(var(--tooltipz-arrow-size, 0.3125rem) * 2);
+            right: 0;
+        }
+
+        .tooltipz-top-right::before {
+            right: calc(var(--tooltipz-arrow-size, 0.3125rem) / 2);
+        }
+
+        .tooltipz-top-right::after,
+        .tooltipz-top-right::before {
+            bottom: calc(100% - (var(--tooltipz-arrow-size, 0.3125rem) / 2));
+            -webkit-transform: translate(0, var(--tooltipz-slide, 6px));
+            transform: translate(0, var(--tooltipz-slide, 6px));
+            -webkit-transform-origin: top;
+            transform-origin: top;
+        }
+
+        .tooltipz-top-right:hover::after,
+        .tooltipz-top-right:hover::before {
+            -webkit-transform: translate(0);
+            transform: translate(0);
+        }
+
+        .tooltipz-top-right::before,
+        .tooltipz-top-left::before,
+        .tooltipz-top::before {
+            border-top-color: var(--tooltipz-bg-color, #1f1f1f);
+            -webkit-filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.3));
+            filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.3));
+        }
+
+        .tooltipz-top-left::after {
+            left: 0;
+            margin-bottom: calc(var(--tooltipz-arrow-size, 0.3125rem) * 2);
+        }
+
+        .tooltipz-top-left::before {
+            left: calc(var(--tooltipz-arrow-size, 0.3125rem) / 2);
+        }
+
+        .tooltipz-top-left::after,
+        .tooltipz-top-left::before {
+            bottom: calc(100% - (var(--tooltipz-arrow-size, 0.3125rem) / 2));
+            -webkit-transform: translate(0, var(--tooltipz-slide, 6px));
+            transform: translate(0, var(--tooltipz-slide, 6px));
+            -webkit-transform-origin: top;
+            transform-origin: top;
+        }
+
+        .tooltipz-top-left:hover::after,
+        .tooltipz-top-left:hover::before {
+            -webkit-transform: translate(0);
+            transform: translate(0);
+        }
+
+        .tooltipz-left::before {
+            border-left-color: var(--tooltipz-bg-color, #1f1f1f);
+            -webkit-filter: drop-shadow(1px 0 1px rgba(0, 0, 0, 0.3));
+            filter: drop-shadow(1px 0 1px rgba(0, 0, 0, 0.3));
+        }
+
+        .tooltipz-left::after {
+            margin-right: calc(var(--tooltipz-arrow-size, 0.3125rem) * 2);
+        }
+
+        .tooltipz-left::after,
+        .tooltipz-left::before {
+            right: calc(100% - (var(--tooltipz-arrow-size, 0.3125rem) / 2));
+            top: 50%;
+            -webkit-transform: translate(var(--tooltipz-slide, 6px), -50%);
+            transform: translate(var(--tooltipz-slide, 6px), -50%);
+            -webkit-transform-origin: left;
+            transform-origin: left;
+        }
+
+        .tooltipz-left:hover::after,
+        .tooltipz-left:hover::before {
+            -webkit-transform: translate(0, -50%);
+            transform: translate(0, -50%);
+        }
+
+        .tooltipz-right::before {
+            border-right-color: var(--tooltipz-bg-color, #1f1f1f);
+            -webkit-filter: drop-shadow(-1px 0 1px rgba(0, 0, 0, 0.3));
+            filter: drop-shadow(-1px 0 1px rgba(0, 0, 0, 0.3));
+        }
+
+        .tooltipz-right::after {
+            margin-left: calc(var(--tooltipz-arrow-size, 0.3125rem) * 2);
+        }
+
+        .tooltipz-right::after,
+        .tooltipz-right::before {
+            left: calc(100% - (var(--tooltipz-arrow-size, 0.3125rem) / 2));
+            top: 50%;
+            -webkit-transform: translate(calc(var(--tooltipz-slide, 6px) * -1), -50%);
+            transform: translate(calc(var(--tooltipz-slide, 6px) * -1), -50%);
+            -webkit-transform-origin: right;
+            transform-origin: right;
+        }
+
+        .tooltipz-right:hover::after,
+        .tooltipz-right:hover::before {
+            -webkit-transform: translate(0, -50%);
+            transform: translate(0, -50%);
+        }
+
+        .tooltipz-bottom::after {
+            margin-top: calc(var(--tooltipz-arrow-size, 0.3125rem) * 2);
+        }
+
+        .tooltipz-bottom::after,
+        .tooltipz-bottom::before {
+            left: 50%;
+            top: calc(100% - (var(--tooltipz-arrow-size, 0.3125rem) / 2));
+            -webkit-transform: translate(-50%, calc(var(--tooltipz-slide, 6px) * -1));
+            transform: translate(-50%, calc(var(--tooltipz-slide, 6px) * -1));
+            -webkit-transform-origin: bottom;
+            transform-origin: bottom;
+        }
+
+        .tooltipz-bottom:hover::after,
+        .tooltipz-bottom:hover::before {
+            -webkit-transform: translate(-50%, 0);
+            transform: translate(-50%, 0);
+        }
+
+        .tooltipz-top::after {
+            margin-bottom: calc(var(--tooltipz-arrow-size, 0.3125rem) * 2);
+        }
+
+        .tooltipz-top::after,
+        .tooltipz-top::before {
+            bottom: calc(100% - (var(--tooltipz-arrow-size, 0.3125rem) / 2));
+            left: 50%;
+            -webkit-transform: translate(-50%, var(--tooltipz-slide, 6px));
+            transform: translate(-50%, var(--tooltipz-slide, 6px));
+            -webkit-transform-origin: top;
+            transform-origin: top;
+        }
+
+        .tooltipz-top:hover::after,
+        .tooltipz-top:hover::before {
+            -webkit-transform: translate(-50%, 0);
+            transform: translate(-50%, 0);
+        }
+
+        /*****?*/
+
+        [aria-label][class*=tooltipz] {
+            cursor: var(--tooltipz-cursor, pointer);
+            position: relative;
+        }
+
+        [aria-label][class*=tooltipz]::after {
+            background-color: var(--tooltipz-bg-color, #1f1f1f);
+            border-radius: var(--tooltipz-border-radius, 0.125rem);
+            -webkit-box-shadow: 0 0 0.1875rem rgba(0, 0, 0, 0.3);
+            box-shadow: 0 0 0.1875rem rgba(0, 0, 0, 0.3);
+            color: var(--tooltipz-text-color, #fff);
+            content: attr(aria-label);
+            font-family: Verdana, Geneva, Tahoma, var(--tooltipz-fontawesome, Arial), sans-serif;
+            font-size: var(--tooltipz-font-size, 0.75rem);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-style: normal;
+            font-weight: 400;
+            padding: 0.5em 1em;
+            text-indent: 0;
+            text-shadow: none;
+            white-space: nowrap;
+            z-index: 10;
+        }
+
+        [aria-label][class*=tooltipz]::before {
+            content: "";
+            z-index: 11;
+        }
+
+        [aria-label][class*=tooltipz]::after,
+        [aria-label][class*=tooltipz]::before {
+            -webkit-transition: all var(--tooltipz-timing, 120ms) ease-out var(--tooltipz-timing, 120ms);
+            transition: all var(--tooltipz-timing, 120ms) ease-out var(--tooltipz-timing, 120ms);
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            opacity: 0;
+            pointer-events: none;
+            position: absolute;
+            -webkit-transition-delay: var(--tooltipz-delay-hide, 0s);
+            transition-delay: var(--tooltipz-delay-hide, 0s);
+        }
+
+        [aria-label][class*=tooltipz]:hover::before,
+        [aria-label][class*=tooltipz]:hover::after {
+            opacity: 1;
+            -webkit-transition-delay: var(--tooltipz-delay-show, 0s);
+            transition-delay: var(--tooltipz-delay-show, 0s);
+        }
+    </style>
+</head>
+
+<body> <br />
+    <br /> <br />
+    <br />
+    <button class="random-class tooltipz-top" aria-label="Hello there!">class: top</button>
+    <button class="random-class tooltipz-bottom" aria-label="Hello there!">class: bottom</button>
+    <button class="random-class tooltipz-right" aria-label="Hello there!">class: right</button>
+    <button class="random-class tooltipz-left" aria-label="Hello there!">class: left</button>
+    <br />
+    <br /> <br />
+    <br />
+    <button class="random-class  tooltipz-top-left" aria-label="Hello there!">class: top-left</button>
+    <button class="random-class tooltipz-top-right" aria-label="Hello there!">class: top-right</button>
+    <button class="random-class tooltipz-bottom-left" aria-label="Hello there!">class: bottom-left</button>
+    <button class="random-class tooltipz-bottom-right" aria-label="Hello there!">class: bottom-right</button>
+
+
+    <br />
+    <br /> <br />
+    <br />
+    <p class="random-class tooltipz-top" aria-label="Hello there!">class: top</p>
+    <p class="random-class tooltipz-bottom" aria-label="Hello there!">class: bottom</p>
+    <p class="random-class tooltipz-right" aria-label="Hello there!">class: right</p>
+    <p class="random-class tooltipz-left" aria-label="Hello there!">class: left</p>
+    <br />
+    <br /> <br />
+    <br />
+    <p class="random-class  tooltipz-top-left" aria-label="Hello there!">class: top-left</p>
+    <p class="random-class tooltipz-top-right" aria-label="Hello there!">class: top-right</p>
+    <p class="random-class tooltipz-bottom-left" aria-label="Hello there!">class: bottom-left</p>
+    <p class="random-class tooltipz-bottom-right" aria-label="Hello there!">class: bottom-right</p>
+
+
+</body>
+
+</html>
