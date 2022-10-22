@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <style>
+        input#pgLength {
+            writing-mode: bt-lr;
+            /* IE */
+            -webkit-appearance: slider-vertical;
+            /* WebKit */
+            width: 8px;
+            height: 100%;
+            padding: 0 5px;
+        }
+    </style>
+    <input type="range" oninput="myFunction(this.value)" orient="vertical" id="pgLength">
+    <p id="demo"></p>
+
+    <script>
+        function myFunction(val) {
+            document.getElementById("demo").innerHTML = val;
+        }
+    </script>
+
+</body>
+
+</html>
