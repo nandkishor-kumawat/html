@@ -1,0 +1,158 @@
+<script>
+    var pbar = document.createElement('div');
+    document.body.appendChild(pbar);
+    pbar.setAttribute('id', 'myBar');
+    pbar.style.cssText = 'background-image:linear-gradient(120deg,#84fab0 0%,#8fd3f4 100%);z-index:999;height:5px;position:fixed;top:0;';
+    document.addEventListener('scroll', processScroll);
+
+    function processScroll() {
+        let docElem = document.documentElement,
+            docBody = document.body,
+            scrollTop = docElem['scrollTop'] || docBody['scrollTop'],
+            scrollBottom = (docElem['scrollHeight'] || docBody['scrollHeight']) - window.innerHeight,
+            scrollPercent = scrollTop / scrollBottom * 100;
+        pbar.style.width = scrollPercent + '%';
+    }
+</script>
+<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<script>
+    var pbar = document.createElement('div');
+    document.body.appendChild(pbar);
+    pbar.setAttribute('id', 'myBar');
+    pbar.style.cssText = 'background-color:blue;z-index:999;height:5px;position:fixed;top:0;';
+    document.addEventListener('scroll', processScroll);
+
+    function processScroll() {
+        let docElem = document.documentElement,
+            docBody = document.body,
+            scrollTop = docElem['scrollTop'] || docBody['scrollTop'],
+            scrollBottom = (docElem['scrollHeight'] || docBody['scrollHeight']) - window.innerHeight,
+            scrollPercent = scrollTop / scrollBottom * 100;
+        pbar.style.width = scrollPercent + '%';
+
+        if (scrollPercent > 0) {
+            pbar.style.cssText += 'background: linear-gradient(120deg, red, orange)';
+        }
+        if (scrollPercent > 28) {
+            pbar.style.cssText += 'background: linear-gradient(120deg, red, orange, yellow)';
+        }
+        if (scrollPercent > 43) {
+            pbar.style.cssText += 'background: linear-gradient(120deg, red, orange, yellow, green)';
+        }
+        if (scrollPercent > 57) {
+            pbar.style.cssText += 'background: linear-gradient(120deg, red, orange, yellow, green, blue)';
+        }
+        if (scrollPercent > 71) {
+            pbar.style.cssText += 'background: linear-gradient(120deg, red, orange, yellow, green, blue, indigo)';
+        }
+        if (scrollPercent > 85) {
+            pbar.style.cssText += 'background: linear-gradient(120deg, red, orange, yellow, green, blue, indigo, violet)';
+        }
+
+    }
+</script>
+
+<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<script>
+    var sbar = document.createElement('div');
+    var pbar = document.createElement('div');
+    document.body.appendChild(sbar);
+    document.body.appendChild(pbar);
+    sbar.setAttribute('id', 'myBar');
+    pbar.style.cssText = 'background:rgba(119, 228, 255, 0.21);z-index:999;height:15px;position:fixed;top:0;text-align: center;font-size: 12px;width:100%';
+    sbar.style.cssText = 'background-image:linear-gradient(120deg,#84fab0 0%,#8fd3f4 100%);z-index:999;height:15px;position:fixed;top:0;';
+    document.addEventListener('scroll', processScroll);
+
+    function processScroll() {
+        let docElem = document.documentElement,
+            docBody = document.body,
+            scrollTop = docElem['scrollTop'] || docBody['scrollTop'],
+            scrollBottom = (docElem['scrollHeight'] || docBody['scrollHeight']) - window.innerHeight,
+            scrollPercent = scrollTop / scrollBottom * 100;
+        sbar.style.width = scrollPercent + '%';
+        pbar.innerHTML = scrollPercent.toFixed(2) + '%';
+    }
+</script>
+
+<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<style>
+    #progress-bar {
+        --scrollAmount: 0%;
+        background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+        width: var(--scrollAmount);
+        /* raibbow	    background: linear-gradient(to right, red, orange, yellow, green, cyan, blue, violet); */
+        z-index: 999;
+        height: 5px;
+        position: fixed;
+        top: 0;
+    }
+</style>
+<div id="progress-bar"></div>
+
+<script>
+    let processScroll = () => {
+        let docElem = document.documentElement,
+            docBody = document.body,
+            scrollTop = docElem['scrollTop'] || docBody['scrollTop'],
+            scrollBottom = (docElem['scrollHeight'] || docBody['scrollHeight']) - window.innerHeight,
+            scrollPercent = scrollTop / scrollBottom * 100 + '%';
+
+        // console.log(scrollTop + ' / ' + scrollBottom + ' / ' + scrollPercent);
+
+        document.getElementById("progress-bar").style.setProperty("--scrollAmount", scrollPercent);
+    }
+
+    document.addEventListener('scroll', processScroll);
+</script>
+
+
+
+<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<script>
+    var pbar = document.createElement('div');
+    document.body.appendChild(pbar);
+    pbar.style.cssText += 'height:5px;background:#77e4ff;position:fixed;z-index:99;top:0;left:0;';
+
+    window.onscroll = function () {
+        myFunction()
+    };
+
+    function myFunction() {
+        var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        var height = (document.documentElement.scrollHeight || document.body.scrollHeight) - window.innerHeight;
+        var scrolled = (winScroll / height) * 100 + "%";
+        pbar.style.width = scrolled;
+    }
+</script>
+
+<!-- <script>
+    var pbar =document.createElement('div');
+    document.body.appendChild(pbar);
+    pbar.setAttribute('class', 'progress-bar');
+    pbar.setAttribute('id', 'myBar');
+    pbar.style.cssText += 'height:5px;background:#77e4ff;position:fixed;z-index:99;top:0;left:0;';
+
+    window.onscroll = function() {
+        myFunction()
+    };
+    function myFunction(){
+        var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        var scrolled = (winScroll / height) * 100;
+        document.getElementById("myBar").style.width = scrolled + "%";
+    }
+</script> -->
+
+
+<!-- .rainbow-lr {
+    background: linear-gradient(to right, red, orange , yellow, green, cyan, blue, violet);
+    color:transparent;
+    background-clip: text;
+  } -->
