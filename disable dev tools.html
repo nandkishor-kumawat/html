@@ -1,0 +1,69 @@
+<script>
+    /*to disable F12*/
+    document.onkeypress = function(event) {
+        event = (event || window.event);
+        if (event.keyCode == 123) {
+            return false;
+        }
+    }
+    document.onmousedown = function(event) {
+        event = (event || window.event);
+        if (event.keyCode == 123) {
+            return false;
+        }
+    }
+    document.onkeydown = function(event) {
+        event = (event || window.event);
+        if (event.keyCode == 123) {
+            return false;
+        }
+    }
+</script>
+<script>
+    document.onkeydown = function(e) {
+        if (e.ctrlKey && (e.keyCode === 67 || e.keyCode === 86 || e.keyCode === 85 || e.keyCode === 117)) {
+            return false;
+        }
+
+    };
+</script>
+<script>
+    document.addEventListener('contextmenu', event => event.preventDefault());
+</script>
+<script>
+    document.onkeydown = function(e) {
+        // disable F12 key
+        if (e.keyCode == 123) {
+            return false;
+        }
+        // disable I key
+        if (e.ctrlKey && e.shiftKey && e.keyCode == 73) {
+            return false;
+        }
+        // disable J key
+        if (e.ctrlKey && e.shiftKey && e.keyCode == 74) {
+            return false;
+        }
+        // disable U key
+        if (e.ctrlKey && e.keyCode == 85) {
+            return false;
+        }
+    }
+</script>
+<script>
+    window.console.log = function() {
+        console.error('Sorry , developers tools are blocked here....');
+        window.console.log = function() {
+            return false;
+        }
+    }
+
+    console.log('test');
+    with((window && window.console && window.console._commandLineAPI) || {}) {
+        // your script here.
+    }
+</script>
+
+</body>
+
+</html>
