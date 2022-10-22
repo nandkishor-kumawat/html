@@ -1,0 +1,43 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" name="" id="text1" placeholder="text">
+    <input type="number" name="" id="number1" placeholder="number">
+    <input type="radio" name="game" id="chek">Insert break
+    <input type="radio" name="game" id="spac">Insert space
+    <input type="button" value="submit" onclick="myfn()">
+    <div id="result"></div>
+
+    <script>
+        function myfn() {
+            var text = document.getElementById('text1').value;
+            var number = document.getElementById('number1').value;
+            var result = document.getElementById('result');
+            var chek = document.getElementById('chek');
+            var spac = document.getElementById('spac');
+            spac.setAttribute('target', '_blank')
+            if (result.innerHTML != '') {
+                result.innerHTML = '';
+            }
+            for (let i = 0; i < number; i++) {
+                if (chek.checked) {
+                    result.innerHTML += text + '<br>';
+                } else if (spac.checked) {
+                    result.innerHTML += text + ' ';
+                } else {
+                    result.innerHTML += text;
+                }
+            }
+        }
+
+    </script>
+</body>
+
+</html>
