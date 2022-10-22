@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <style>
+        .tooltipped {
+            position: relative
+        }
+        
+        .tooltipped:after {
+            position: absolute;
+            z-index: 1000000;
+            display: none;
+            padding: 5px 8px;
+            font: normal normal 11px/1.5 Helvetica, arial, nimbussansl, liberationsans, freesans, clean, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+            color: #fff;
+            text-align: center;
+            letter-spacing: normal;
+            word-wrap: break-word;
+            white-space: pre;
+            pointer-events: none;
+            content: attr(aria-label);
+            background: rgba(0, 0, 0, .8);
+            border-radius: 3px;
+            top: 100%;
+            right: 50%;
+            margin-top: 5px;
+            -webkit-transform: translateX(50%);
+            -ms-transform: translateX(50%);
+            transform: translateX(50%)
+        }
+        
+        .tooltipped:hover:after,
+        .tooltipped:active:after,
+        .tooltipped:focus:after {
+            display: inline-block;
+            text-decoration: none;
+        }
+        
+        .wrap {
+            margin: 0 auto 90px;
+            max-width: 540px;
+            padding: 0 15px;
+            background-color: #333e50;
+            border-radius: 20px;
+        }
+        
+        input {
+            width: 100%;
+            border: 1px solid transparent;
+            border-radius: 1000px;
+            vertical-align: middle;
+            padding: 6px 10px;
+        }
+        
+        input:focus {
+            color: #212529;
+            background-color: #fff;
+            border-color: #86b7fe;
+            outline: 0;
+            box-shadow: 0 0 0 .25rem rgba(13, 110, 253, .25);
+            transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        .snippet {
+            display: block;
+            padding: .5em;
+            color: #333;
+            background: #f8f8f8;
+            border-radius: 1000px;
+        }
+        
+        .btn {
+            position: relative;
+            display: inline-block;
+            padding: 6px 12px;
+            font-size: 13px;
+            font-weight: 700;
+            line-height: 20px;
+            color: #333;
+            white-space: nowrap;
+            vertical-align: middle;
+            cursor: pointer;
+            background-color: #eee;
+            background-image: linear-gradient(#fcfcfc, #eee);
+            border-radius: 1000px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-appearance: none;
+        }
+        
+        .btn:focus:hover {
+            border-color: #51a7e8
+        }
+        
+        .btn.disabled,
+        .btn:disabled {
+            pointer-events: none;
+            opacity: 0;
+        }
+        
+        .form-control:disabled,
+        .form-control[readonly] {
+            background-color: #f8f8f8;
+            border: none;
+        }
+        
+        .btn:hover,
+        .btn:active {
+            text-decoration: none;
+            background-color: #ddd;
+            background-image: linear-gradient(#eee, #ddd);
+            border-color: #ccc
+        }
+        
+        .clippy {
+            margin-top: -3px;
+            position: relative;
+            top: 3px;
+        }
+        
+        .snippet {
+            position: relative;
+            overflow: visible
+        }
+        
+        code {
+            font-size: 14px;
+            line-height: 20px
+        }
+        
+        .btn {
+            transition: opacity .3s ease-in-out;
+            opacity: 1;
+            padding: 2px 6px;
+            position: absolute;
+            right: 4px;
+            top: 10px
+        }
+        
+        #docvalue {
+            border-radius: 1000px;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="wrap"><br>
+        <div class="snippet">
+            <input type="text" class="form-control" id="sharelink" placeholder="Dropbox or Google Drive link" autofocus="true">
+        </div>
+        <br>
+        <div class="snippet">
+            <button id="copylinkbtn" class="btn" type="button" data-clipboard-demo="" data-clipboard-target="#downloadlink" disabled=""><svg class="clippy" width="13" height="16" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 13h4v1H2v-1zm5-6H2v1h5V7zm2 3V8l-3 3 3 3v-2h5v-2H9zM4.5 9H2v1h2.5V9zM2 12h2.5v-1H2v1zm9 1h1v2c-.02.28-.11.52-.3.7-.19.18-.42.28-.7.3H1c-.55 0-1-.45-1-1V4c0-.55.45-1 1-1h3c0-1.11.89-2 2-2 1.11 0 2 .89 2 2h3c.55 0 1 .45 1 1v5h-1V6H1v9h10v-2zM2 5h8c0-.55-.45-1-1-1H8c-.55 0-1-.45-1-1s-.45-1-1-1-1 .45-1 1-.45 1-1 1H3c-.55 0-1 .45-1 1z"></path>
+           </svg></button>
+            <input type="text" class="form-control" id="downloadlink" readonly="">
+        </div>
+        <br>
+        <div>
+            <select id="docvalue" disabled="">
+                <option value="Choose" selected>Choose</option>
+            <option name="doctype" value="CSS">CSS</option>
+            <option name="doctype" value="javascript">Javascript</option>
+        </select>
+        </div>
+        <br>
+        <div class="snippet">
+            <button id="copycodebtn" class="btn" type="button" data-clipboard-demo="" data-clipboard-target="#htmllink" disabled=""><svg class="clippy" width="13" height="16" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 13h4v1H2v-1zm5-6H2v1h5V7zm2 3V8l-3 3 3 3v-2h5v-2H9zM4.5 9H2v1h2.5V9zM2 12h2.5v-1H2v1zm9 1h1v2c-.02.28-.11.52-.3.7-.19.18-.42.28-.7.3H1c-.55 0-1-.45-1-1V4c0-.55.45-1 1-1h3c0-1.11.89-2 2-2 1.11 0 2 .89 2 2h3c.55 0 1 .45 1 1v5h-1V6H1v9h10v-2zM2 5h8c0-.55-.45-1-1-1H8c-.55 0-1-.45-1-1s-.45-1-1-1-1 .45-1 1-.45 1-1 1H3c-.55 0-1 .45-1 1z"></path>
+           </svg></button>
+            <input type="text" class="form-control" id="htmllink" readonly="">
+        </div>
+        <br>
+
+        <script src="https://clipboardjs.com/dist/clipboard.min.js"></script>
+        <script src="https://clipboardjs.com/assets/scripts/demos.js"></script>
+        <script>
+            var clipboardSnippets = new ClipboardJS('[data-clipboard-snippet]', {
+                target: function(trigger) {
+                    return trigger.nextElementSibling;
+                }
+            });
+            clipboardSnippets.on('success', function(e) {
+                e.clearSelection();
+                showTooltip(e.trigger, 'Copied!');
+            });
+            clipboardSnippets.on('error', function(e) {
+                showTooltip(e.trigger, fallbackMessage(e.action));
+            });
+        </script>
+        <script src="https://clipboardjs.com/assets/scripts/tooltips.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <!-- <script src="https://dl.dropboxusercontent.com/s/2rp23mohw6qkoax/drive-dropbox-link-generator-min.js" defer="defer" type="text/javascript"></script> -->
+        <script>
+            ! function(e) {
+                e(function() {
+                    var t, l, a = e("#sharelink"),
+                        c = e("#downloadlink"),
+                        o = e("#copylinkbtn"),
+                        i = e("#copycodebtn"),
+                        d = e("#htmllink"),
+                        n = e("#filelink"),
+                        s = e("#htmllink1"),
+                        r = e("#copycodebtn1"),
+                        p = {};
+                    a.on("keyup paste", function() {
+                        var t = a.val();
+                        if ("-1" == t.search("www.dropbox.com")) var l = t.replace(/\/file\/d\/(.+)\/(.+)/, "/uc?export=download&id=$1");
+                        else l = t.replace(/www.dropbox.com\/s\/(.+)\?(.+)/, "dl.dropboxusercontent.com/s/$1");
+                        l !== t ? (c.val(l), o.removeAttr("disabled"), e("#docvalue").removeAttr("disabled"), p.link = l) : (c.val(""), d.val(""), o.attr("disabled", "disabled"), i.attr("disabled", "disabled"), e("#docvalue").attr("disabled", "disabled"), e("#docvalue").val("Choose"), docvalue())
+                    }), c.on("click", function() {
+                        c.select()
+                    }), d.on("click", function() {
+                        d.select()
+                    }), n.on("keyup paste", function() {
+                        var t = n.val();
+                        "" === t ? (s.val(""), e("#docvalue1").val("Choose"), e("#docvalue1").attr("disabled", "disabled"), r.attr("disabled", "disabled")) : (p.link1 = t, e("#docvalue1").removeAttr("disabled"))
+                    }), s.on("click", function() {
+                        s.select()
+                    }), e("#docvalue").on("change", function() {
+                        switch (e("#docvalue option:selected").text()) {
+                            case "CSS":
+                                var t = '<link rel="stylesheet" type="text/css" href="' + p.link + '"/>';
+                                i.removeAttr("disabled");
+                                break;
+                            case "Javascript":
+                                t = '<script type="text/javascript" src="' + p.link + '"/>';
+                                i.removeAttr("disabled");
+                                break;
+                            default:
+                                t = "";
+                                i.attr("disabled", "disabled")
+                        }
+                        d.val(t)
+                    }), e("#docvalue1").on("change", function() {
+                        switch (e("#docvalue1 option:selected").text()) {
+                            case "CSS":
+                                var t = '<link rel="stylesheet" type="text/css" href="' + p.link1 + '"/>';
+                                r.removeAttr("disabled");
+                                break;
+                            case "Javascript":
+                                t = '<script type="text/javascript" src="' + p.link1 + '"/>';
+                                r.removeAttr("disabled");
+                                break;
+                            default:
+                                r.attr("disabled", "disabled");
+                                t = ""
+                        }
+                        s.val(t)
+                    }), t = new ClipboardJS("#copylinkbtn"), l = new ClipboardJS("[data-clipboard-demo]"), t.on("success", function(t) {
+                        e.notify({
+                            icon: "glyphicon glyphicon-ok-circle",
+                            title: "Link copied to clipboard:",
+                            message: t.text,
+                            url: t.text,
+                            target: "_blank"
+                        }, {
+                            type: "success",
+                            placement: {
+                                from: "top",
+                                align: "center"
+                            }
+                        }), t.clearSelection()
+                    }), l.on("success", function(t) {
+                        e.notify({
+                            icon: "glyphicon glyphicon-ok-circle",
+                            message: "HTML code copied to clipboard"
+                        }, {
+                            type: "success",
+                            placement: {
+                                from: "top",
+                                align: "center"
+                            }
+                        }), t.clearSelection()
+                    })
+                })
+            }(jQuery);
+        </script>
+    </main>
+</body>
+
+</html>
