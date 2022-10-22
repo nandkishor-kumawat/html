@@ -1,0 +1,27 @@
+<html>
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="index.css" />
+    <title>Text to Speech</title>
+</head>
+
+<body>
+    <button type="button" id='myvoice' onclick="say()">Listen to me</button>
+    <script>
+        function say() {
+            var msg = new SpeechSynthesisUtterance();
+            var voices = window.speechSynthesis.getVoices();
+            msg.voice = voices[10];
+            msg.voiceURI = "native";
+            msg.volume = 1;
+            msg.rate = 1;
+            msg.pitch = 0.8;
+            msg.text = 'hello I am text to speech program';
+            msg.lang = 'en-US';
+            speechSynthesis.speak(msg);
+        }
+    </script>
+</body>
+
+</html>
