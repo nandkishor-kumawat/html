@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <style>
+
+        #snackbar.show {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <p onclick="copy(this)">hello man</p>
+    <p onclick="copy(this)">hello man W3Schools is optimized for learning and training. Examples might be simplified to improve reading and learning. Tutorials, references, and examples are constantly reviewed to avoid errors, but we cannot warrant full correctness of all content.
+        While using W3Schools, you agree to have read and accepted our terms of use, cookie and privacy policy.</p>
+    <p onclick="copy(this)">hello man</p>
+    <p onclick="copy(this)">hello man</p>
+    <p onclick="copy(this)">hello man</p>
+    <script>
+        function copy(that) {
+            var inp1 = document.createElement('div');
+            document.body.appendChild(inp1);
+            inp1.style.cssText = "visibility:hidden;min-width:250px;background-color:#333;color:#fff;text-align:center;border-radius:2px;padding:16px;position:fixed;z-index:1;left:10px;top:30px;font-size:17px;opacity:0;transition:all .5s ease-in-out;"
+
+            var inp = document.createElement('input');
+            document.body.appendChild(inp)
+            inp.value = that.textContent
+            inp.select();
+
+            document.execCommand('copy');
+
+            inp1.style.cssText += "visibility: visible;opacity: 1;"
+            inp1.innerHTML = 'Succesfully Copied to Clipboard'
+            inp.remove();
+            setTimeout(function() {
+                inp1.remove();
+            }, 1000);
+        }
+    </script>
+</body>
+
+</html>
