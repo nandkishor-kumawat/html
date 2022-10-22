@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+</head>
+
+<body>
+
+    <div class='footer-copyright' id='footer-copyright'>
+        <span class='copyright-text'>Design by - <a href='https://github.com/rohsikdnan' id='templateify' title='Templateify'>Jayasurya Mayilsamy</a></span>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $("a#templateify").each(function() {
+            var clicked_element = $(this);
+            /** @type {string} */
+            var classesLine = "visibility:visible!important;opacity:1!important;position:relative!important;z-index:1!important;font-size:14px!important;color:#000!important;margin:0!important;";
+            clicked_element.attr("href", "https://github.com/rohsikdnan").text("Blogger Templates").attr("style", "visibility:visible!important;opacity:1!important;position:relative!important;z-index:1!important;font-size:14px!important;color:var(--main-color)!important;margin:0!important;");
+            clicked_element.parent().attr("style", classesLine);
+            clicked_element.parent().parent().attr("style", classesLine);
+        });
+        setInterval(function() {
+            if (!$("a#templateify").length) {
+                /** @type {string} */
+                window.location.href = "https://github.com/rohsikdnan";
+            }
+            if (!$("a#templateify:visible").length) {
+                /** @type {string} */
+                window.location.href = "https://github.com/rohsikdnan";
+            }
+        }, 1e3);
+    </script>
+
+</body>
+
+</html>
