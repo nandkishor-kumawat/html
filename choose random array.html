@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+</head>
+
+<body>
+    <button onclick="getRandVal();">click</button>
+    <div id="app"></div>
+
+    <script>
+        var alreadyDone = [];
+        const randomValueFromArray = (myArray) => {
+
+            if (alreadyDone.length === 0) {
+                for (var i = 0; i < myArray.length; i++)
+                    alreadyDone.push(i);
+            }
+            var randomValueIndex = Math.floor(Math.random() * alreadyDone.length);
+            var indexOfItemInMyArray = alreadyDone[randomValueIndex];
+
+            alreadyDone.splice(randomValueIndex, 1);
+
+            return myArray[indexOfItemInMyArray];
+        };
+
+        const getRandVal = () => {
+            document.getElementById("randomValue").innerHTML = randomValueFromArray(["a", "b", "c", "d", "e", "f", "g"]);
+            console.log(randomValueFromArray(["a", "b", "c", "d", "e", "f", "g"]));
+
+            document.getElementById("indexLeft").innerHTML = JSON.stringify(alreadyDone);
+
+        };
+
+        document.getElementById("app").innerHTML = `
+<div><b>Input Array - ["a", "b", "c", "d", "e", "f", "g"]</b></div>
+<div><b>Array Index Left: </b><span id="indexLeft"></span></div>
+<h1>Random Array Value - <span id="randomValue"></span></h1>
+`;
+    </script>
+</body>
+
+</html>
