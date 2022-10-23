@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>typeWriter</title>
+    <style>
+        body {
+            background-color: #000;
+            color: crimson;
+            font-size: 30px;
+        }
+
+        .typing-curser:after {
+            content: "|";
+            animation: blink 1s infinite;
+            animation-timing-function: step-end;
+        }
+
+        @keyframes blink {
+
+            0%,
+            75%,
+            100% {
+                opacity: 1;
+            }
+
+            25% {
+                opacity: 0;
+            }
+        }
+
+        span[class^="typing"] {
+            color: crimson;
+            text-shadow: 0 0 5px crimson, 0 0 25px crimson, 0 0 50px crimson;
+            padding: 2px;
+            letter-spacing: 3px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <span class="typing1"></span><br><br>
+    <span class="typing2"></span><br><br>
+    <span class="typing3"></span><br><br>
+    <span class="typing4"></span><br><br>
+    <span class="typing5"></span><br><br>
+
+
+    <script>
+        var $ = (c) => { return document.querySelector(c) }
+        typeWriter($('.typing1'), ["YouTuber", "Designer", "Freelancer", "Web Developer"])
+        typeWriter($('.typing2'), ["Web Developer", "YouTuber", "Designer", "Freelancer"])
+        typeWriter($('.typing3'), ["Freelancer", "Web Developer", "YouTuber", "Designer"])
+        typeWriter($('.typing4'), ["YouTuber", "Designer", "Freelancer", "Web Developer"])
+        typeWriter($('.typing5'), ["Designer", "Freelancer", "Web Developer", "YouTuber"])
+
+        function typeWriter(ele, str) {
+            var st = document.createElement('span')
+            st.classList.add('typing-curser')
+            ele.insertAdjacentElement('afterend', st)
+            let str_l = 0, text_l = 0;
+
+            const typingDelay = 200;
+            const erasingDelay = 100;
+            const newTextDelay = 2000;
+
+            function type() {
+                if (text_l <= str[str_l].length) {
+                    ele.textContent = str[str_l].substring(0, text_l);
+                    text_l++;
+                    setTimeout(type, typingDelay);
+                }
+                else {
+                    setTimeout(erase, newTextDelay);
+                }
+            }
+            function erase() {
+                if (text_l > 0) {
+                    text_l--;
+                    ele.textContent = str[str_l].substring(0, text_l);
+                    setTimeout(erase, erasingDelay);
+                } else {
+                    str_l++;
+                    if (str_l >= str.length) str_l = 0;
+                    setTimeout(type, typingDelay + 1100);
+                }
+            }
+            setTimeout(type, 1250);
+        }
+
+
+
+    </script>
+
+</body>
+
+</html>
