@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<!-- <script>
+    setTimeout("location.reload(true);", 1000)
+</script> -->
+<style>
+    .tooltip {
+        position: relative;
+        display: inline-block;
+    }
+    
+    .tooltip:hover:before {
+        position: absolute;
+        z-index: 1000000;
+        content: "";
+        pointer-events: none;
+        border-style: solid;
+        border-width: 5px;
+    }
+    
+    .tooltip:hover:after {
+        position: absolute;
+        z-index: 1000000;
+        content: "Copied!";
+        pointer-events: none;
+        padding: 5px 8px;
+        background: rgba(0, 0, 0);
+        border-radius: 3px;
+        font: normal normal 11px/1.5 Helvetica, arial, nimbussansl, liberationsans, freesans, clean, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+        color: #fff;
+        text-align: center;
+        letter-spacing: normal;
+        word-wrap: break-word;
+        white-space: pre;
+        -webkit-transform: translateX(50%);
+        -ms-transform: translateX(50%);
+        transform: translateX(50%);
+    }
+    
+    .tooltip.top:hover:before {
+        bottom: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-color: black transparent transparent transparent;
+    }
+    
+    .tooltip.top:hover:after {
+        bottom: 100%;
+        right: 50%;
+        margin-bottom: 9px;
+    }
+    
+    .tooltip.bottom:hover:before {
+        margin-left: -5px;
+        margin-top: 0px;
+        border-color: transparent transparent black transparent;
+        top: 100%;
+        left: 50%;
+    }
+    
+    .tooltip.bottom:hover:after {
+        top: 100%;
+        right: 50%;
+        margin-top: 9px;
+    }
+    
+    .tooltip.left:hover:before {
+        top: 50%;
+        right: 100%;
+        margin-top: -5px;
+        border-color: transparent transparent transparent black;
+    }
+    
+    .tooltip.left:hover:after {
+        top: 50%;
+        right: 100%;
+        margin-right: 36px;
+        margin-top: -13px;
+    }
+    
+    .tooltip.right:hover:before {
+        top: 50%;
+        left: 100%;
+        margin-top: -5px;
+        border-color: transparent black transparent transparent;
+    }
+    
+    .tooltip.right:hover:after {
+        left: 100%;
+        margin-top: -5px;
+        margin-left: -18px
+    }
+    
+    div {
+        margin: 25px 0
+    }
+    
+    body {
+        margin: 20px auto;
+        text-align: center;
+    }
+</style>
+
+<body>
+
+
+    <div class="tooltip top">Hover hf hdf hsd sfh over me</div><br>
+    <div class="tooltip bottom">Hover ofhk hj sfhks fh fsjk hver me</div><br>
+    <div class="tooltip left">Hovhdg hdghkl dgher over me</div><br>
+    <div class="tooltip right">Hover jg gj dgj dgj djdfjk over me</div><br>
+
+</body>
+
+</html>
