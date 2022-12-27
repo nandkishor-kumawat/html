@@ -51,17 +51,17 @@
 
 
     <script>
-        var $ = (c) => { return document.querySelector(c) }
-        typeWriter($('.typing1'), ["YouTuber", "Designer", "Freelancer", "Web Developer"])
-        typeWriter($('.typing2'), ["Web Developer", "YouTuber", "Designer", "Freelancer"])
-        typeWriter($('.typing3'), ["Freelancer", "Web Developer", "YouTuber", "Designer"])
-        typeWriter($('.typing4'), ["YouTuber", "Designer", "Freelancer", "Web Developer"])
-        typeWriter($('.typing5'), ["Designer", "Freelancer", "Web Developer", "YouTuber"])
+        var $ = (c) => document.querySelector(c);
+        typeWriter($('.typing1'), ["YouTuber", "Designer", "Freelancer", "Web Developer"]);
+        typeWriter($('.typing2'), ["Web Developer", "YouTuber", "Designer", "Freelancer"]);
+        typeWriter($('.typing3'), ["Freelancer", "Web Developer", "YouTuber", "Designer"]);
+        typeWriter($('.typing4'), ["YouTuber", "Designer", "Freelancer", "Web Developer"]);
+        typeWriter($('.typing5'), ["Designer", "Freelancer", "Web Developer", "YouTuber"]);
 
         function typeWriter(ele, str) {
-            var st = document.createElement('span')
-            st.classList.add('typing-curser')
-            ele.insertAdjacentElement('afterend', st)
+            var st = document.createElement('span');
+            st.classList.add('typing-curser');
+            ele.insertAdjacentElement('afterend', st);
             let str_l = 0, text_l = 0;
 
             const typingDelay = 200;
